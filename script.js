@@ -2,6 +2,7 @@ let dimensions = 16;
 const sketchpad = document.getElementById('sketchpad');
 const sketchpadSize = sketchpad.clientWidth;
 const setDimensionsButton = document.getElementById('setdimensions');
+const resetButton = document.getElementById('reset');
 
 function isDimensionInvalid(dimension) {
     return isNaN(dimension) || 
@@ -14,9 +15,15 @@ setDimensionsButton.addEventListener('click', () => {
     do {
         newDimensions = window.prompt('Enter the desired dimensions (1-100)');
     } while(isDimensionInvalid(newDimensions));
-    generateSketchpad(newDimensions);
+    dimensions = newDimensions
+    generateSketchpad(dimensions);
     }
 );
+
+resetButton.addEventListener('click', () => {
+    generateSketchpad(dimensions);
+    }
+)
 
 function colorize(event) {
     const cell = event.target;
