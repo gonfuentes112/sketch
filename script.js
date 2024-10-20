@@ -1,5 +1,22 @@
+let dimensions = 16;
 const sketchpad = document.getElementById('sketchpad');
-let size = 16;
+const sketchpadSize = sketchpad.clientWidth;
+const setDimensionsButton = document.getElementById('setdimensions');
+
+function isDimensionInvalid(dimension) {
+    return isNaN(dimension) || 
+    dimension > 100 ||
+    dimension < 1;
+};
+
+setDimensionsButton.addEventListener('click', () => {
+    let newDimensions;
+    do {
+        newDimensions = window.prompt('Enter the desired dimensions (1-100)');
+    } while(isDimensionInvalid(newDimensions));
+    generateSketchpad(newDimensions);
+    }
+);
 
 function colorize(event) {
     const cell = event.target;
@@ -9,17 +26,17 @@ function colorize(event) {
 sketchpad.addEventListener('mouseover', (event) =>{
     colorize(event);
     }
-
 );
 
 
-function generateSketchpad(size) {
-    let cellsize = 320 / size;
-    for (let i = 0; i < size; i++) {
+function generateSketchpad(dimensions) {
+    sketchpad.innerHTML = '';
+    let cellsize = sketchpadSize / dimensions;
+    for (let i = 0; i < dimensions; i++) {
         const newRow = document.createElement('div');
         newRow.setAttribute('class', 'row');
         newRow.style = `height: ${cellsize}px`;
-        for (let j = 0; j < size; j++) {
+        for (let j = 0; j < dimensions; j++) {
             const newCell = document.createElement('div');
             newCell.setAttribute('class', 'cell');
             newCell.style = `height: ${cellsize}px; width: 100%`;
@@ -28,4 +45,4 @@ function generateSketchpad(size) {
         sketchpad.appendChild(newRow);
     }
 }
-generateSketchpad(size);
+generateSketchpad(dimensions);
