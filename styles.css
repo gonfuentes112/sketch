@@ -31,3 +31,6 @@ body {
     padding: 0;
 }
 
+.blackCell {
+    background-color: black;
+}

@@ -1,6 +1,17 @@
 const sketchpad = document.getElementById('sketchpad');
 let size = 16;
 
+function colorize(event) {
+    const cell = event.target;
+    cell.classList.add('blackCell');
+};
+
+sketchpad.addEventListener('mouseover', (event) =>{
+    colorize(event);
+    }
+
+);
+
 
 function generateSketchpad(size) {
     let cellsize = 320 / size;
