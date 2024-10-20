@@ -30,6 +30,7 @@ body {
 
 button {
     flex: 1;
+    border-radius: 10% / 50%;
 }
 
 .row {
